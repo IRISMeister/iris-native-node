@@ -1,0 +1,18 @@
+version: '3.7'
+#
+services:
+  iris:
+    image: containers.intersystems.com/intersystems/iris-community:2021.1.0.205.0
+    init: true
+    hostname: iris
+    volumes:
+      - ./UserCPF:/home/irisowner/cpf
+    environment:
+    - TZ=JST-9
+    - ISC_CPF_MERGE_FILE=/home/irisowner/cpf/merge.cpf
+
+  node:
+    build:
+      context: .
+    volumes:
+      - ./src:/usr/projects/src
